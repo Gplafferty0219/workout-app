@@ -1,3 +1,4 @@
+  
 import os
 import base64
 from dotenv import load_dotenv
@@ -113,9 +114,10 @@ def send_email(subject="Workout", html="<p>Today's Workout</p>", pdf="workout.pd
     try:
         response = client.send(message)
         return response
-    except Exception as e:
-        print("OOPS", e.message)
-        return None
+    #except Exception as e:
+    #    print("OOPS")
+    #    return None
+
 if __name__ == "__main__":
     example_subject = "Juicy Lifts Workout"
     example_html = f""" 
