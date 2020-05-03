@@ -89,5 +89,5 @@ if __name__ == "__main__":
     #</ul>
     #"""
 #
-    #send_email(example_subject, example_html, example
+    send_email(example_subject, example_html, example
 
