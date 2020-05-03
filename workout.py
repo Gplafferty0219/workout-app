@@ -48,7 +48,43 @@ if FitnessGoals == "gain" and Muscles == "upper" and Equipment == "full":
     pdf.set_font("Arial", "B", 16)
     pdf.cell(40, 10, "fun workout")
     pdf.output("workout.pdf", "F")
-elif FitnessGoals == "lose" and Muscles == "lower" and Equipment == "none":
+elif FitnessGoals == "loss" and Muscles == "upper" and Equipment == "full":
+    pdf = FPDF()
+    pdf.add_page()
+    pdf.set_font("Arial", "B", 16)
+    pdf.cell(40, 10, "wimpy workout")
+    pdf.output("workout.pdf", "F")
+elif FitnessGoals == "gain" and Muscles == "upper" and Equipment == "none":
+    pdf = FPDF()
+    pdf.add_page()
+    pdf.set_font("Arial", "B", 16)
+    pdf.cell(40, 10, "wimpy workout")
+    pdf.output("workout.pdf", "F")
+elif FitnessGoals == "loss" and Muscles == "upper" and Equipment == "none":
+    pdf = FPDF()
+    pdf.add_page()
+    pdf.set_font("Arial", "B", 16)
+    pdf.cell(40, 10, "wimpy workout")
+    pdf.output("workout.pdf", "F")
+elif FitnessGoals == "gain" and Muscles == "lower" and Equipment == "full":
+    pdf = FPDF()
+    pdf.add_page()
+    pdf.set_font("Arial", "B", 16)
+    pdf.cell(40, 10, "wimpy workout")
+    pdf.output("workout.pdf", "F")
+elif FitnessGoals == "loss" and Muscles == "lower" and Equipment == "full":
+    pdf = FPDF()
+    pdf.add_page()
+    pdf.set_font("Arial", "B", 16)
+    pdf.cell(40, 10, "wimpy workout")
+    pdf.output("workout.pdf", "F")
+elif FitnessGoals == "gain" and Muscles == "lower" and Equipment == "none":
+    pdf = FPDF()
+    pdf.add_page()
+    pdf.set_font("Arial", "B", 16)
+    pdf.cell(40, 10, "wimpy workout")
+    pdf.output("workout.pdf", "F")
+elif FitnessGoals == "loss" and Muscles == "lower" and Equipment == "none":
     pdf = FPDF()
     pdf.add_page()
     pdf.set_font("Arial", "B", 16)
@@ -84,9 +120,10 @@ if __name__ == "__main__":
     example_subject = "Juicy Lifts Workout"
     example_html = f""" 
     <h3> Welcome to Juicy Lifts! </h3>
-    <p> Attached to this email you find a PDF with a workout that addresses your specific fitness needs. Time to hit the gym! </p>
+    <p> Attached to this email you will find a PDF with a workout that addresses your specific fitness needs. Time to hit the gym! </p>
     """
     example_pdf = "workout.pdf"
 
     send_email(example_subject, example_html, example_pdf)
-    print("Thank you for chossing Juicy Lifts! Your email has been sent. Time to grind!")
+    print(" ")
+    print("Thank you for choosing Juicy Lifts! Your email has been sent. Time to grind!")
