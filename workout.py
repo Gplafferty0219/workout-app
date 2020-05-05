@@ -1,4 +1,6 @@
-  
+#workout-app
+
+# import some files and applications
 import os
 import base64
 from dotenv import load_dotenv
@@ -8,12 +10,14 @@ from sendgrid.helpers.mail import (
     FileType, Disposition, ContentId)
 from fpdf import FPDF
 
+#welcome message
 print("Welcome to Juicy Lifts: the Workout Customizer Tool!")
 print("Please enter some information about yourself below to get started!")
 print(" ")
 
+#loop through the input forms until the user enters their information correctly
 while True:
-    FitnessGoals = input("Would you like to 'gain' or 'lose' weight?: ")
+    FitnessGoals = input("Would you like to 'gain' or 'lose' weight?: ") #store user input in a variable
     if FitnessGoals == "gain":
         print("  Swole is your Goal!")
         break
@@ -21,7 +25,7 @@ while True:
         print("  Lean, Mean, Fitness Machine!")
         break
     else: 
-        print("Please enter either 'gain' or 'lose'!")
+        print("Please enter either 'gain' or 'lose'!") #loops back to question
 while True:
     Muscles = input("Would you like to work out your 'upper' or 'lower' body?: ")
     if Muscles == "upper":
@@ -43,6 +47,7 @@ while True:
     else: 
         print("Please enter either 'full' or 'none'!")
 
+#use stored information in a series of if then statements to generate different workouts onto a PDF
 if FitnessGoals == "gain" and Muscles == "upper" and Equipment == "full":
     pdf = FPDF()
     pdf.add_page()
@@ -62,7 +67,7 @@ if FitnessGoals == "gain" and Muscles == "upper" and Equipment == "full":
     pdf.cell(1,10,"", ln=11)
     pdf.cell(1,10,"Finish with a 10 minute cool down (slow bike, jog, stretch)")
 
-    pdf.output("workout.pdf", "F")
+    pdf.output("workout.pdf", "F") #saves PDF for future use
 elif FitnessGoals == "lose" and Muscles == "upper" and Equipment == "full":
     pdf = FPDF()
     pdf.add_page()
@@ -205,12 +210,15 @@ elif FitnessGoals == "lose" and Muscles == "lower" and Equipment == "none":
     pdf.output("workout.pdf", "F")
 
 load_dotenv()
+MY_NAME = os.getenv("MY_NAME", default="Juicy Lifter") #variable from the .env file
+SENDGRID_API_KEY = os.environ.get("SENDGRID_API_KEY") #variable from the .env file
+MY_EMAIL = os.environ.get("MY_EMAIL_ADDRESS") #variable from the .env file
 
-SENDGRID_API_KEY = os.environ.get("SENDGRID_API_KEY")
-MY_EMAIL = os.environ.get("MY_EMAIL_ADDRESS")
+#generates the email using SendGrid
 def send_email(subject="Workout", html="<p>Today's Workout</p>", pdf="workout.pdf"):
     client = SendGridAPIClient(SENDGRID_API_KEY) #> <class 'sendgrid.sendgrid.SendGridAPIClient>
     message = Mail(from_email=MY_EMAIL, to_emails=MY_EMAIL, subject=subject, html_content=html)
+    #attaches the PDF we generated earlier
     file_path = 'workout.pdf'
     with open(file_path, 'rb') as f:
         data = f.read()
@@ -223,6 +231,7 @@ def send_email(subject="Workout", html="<p>Today's Workout</p>", pdf="workout.pd
     attachment.disposition = Disposition('attachment')
     attachment.content_id = ContentId('Example Content ID')
     message.attachment = attachment
+    #send email
     try:
         response = client.send(message)
         return response
@@ -230,19 +239,21 @@ def send_email(subject="Workout", html="<p>Today's Workout</p>", pdf="workout.pd
         print("OOPS", e.message)
         return None
 
+#where we get into the actual contents of the email, the message, subject, etc.
 if __name__ == "__main__":
-    example_subject = "Juicy Lifts Workout"
-    example_html = f""" 
-    <h3> Welcome to Juicy Lifts! </h3>
+    email_subject = "Juicy Lifts Workout"
+    email_html = f""" 
+    <h3> Welcome to Juicy Lifts, {MY_NAME}! </h3>
     <p> Attached to this email you will find a PDF with a workout that addresses your specific fitness needs. Time to hit the gym! </p>
     """
-    example_pdf = "workout.pdf"
-
-    send_email(example_subject, example_html, example_pdf)
+    email_pdf = "workout.pdf"
+    #send my message to users
+    send_email(email_subject, email_html, email_pdf)
     print(" ")
     print("Your email has been sent!")
     print(" ")
 
+#confirmation user received, if no sends a helpful message about spam/junk
 while True:
     Confirmation = input("Did you receive your email?: ")
     if Confirmation == "yes":

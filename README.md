@@ -1,4 +1,4 @@
-# workout-app
+# Workout App
 
 Sends you a customized workout program based on your fitness needs. The workout will be generated into a PDF and emailed to you.
 
@@ -10,7 +10,7 @@ Fork this repo and clone it onto your local computer (for example to your Deskto
 cd ~/Desktop/workout-app/
 ```
 
-Create and activate a new Anaconda virtual environment, perhaps named "briefings-env":
+Create and activate a new Anaconda virtual environment, perhaps named "gym-env":
 
 ```sh
 conda create -n gym-env python=3.7
@@ -44,9 +44,4 @@ From within the virtual environment, you are now ready to run the code:
 python workout.py
 ```
 
-> NOTE: the Sendgrid emails might first start showing up in spam, until you designate them as coming from a trusted source (i.e. "Looks Safe")
->
-> ![](https://user-images.githubusercontent.com/1328807/77856232-c7a0ff80-71c3-11ea-9dce-7a32b88701c6.png)
-
-
-![](https://user-images.githubusercontent.com/1328807/77860069-173ef580-71db-11ea-83c6-5897bb9f4f51.png)
+NOTE: the Sendgrid emails might first start showing up in spam, until you designate them as coming from a trusted source (i.e. "Looks Safe")
