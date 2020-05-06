@@ -27,9 +27,6 @@ Obtain an API Key from the [SendGrid](https://app.sendgrid.com/settings/api_keys
 
 ```sh
 # .env example
-
-APP_ENV="development" # or set to "production" on Heroku server
-
 SENDGRID_API_KEY="_______________"
 MY_EMAIL_ADDRESS="larry@bigmuscles.com"
 
@@ -41,7 +38,7 @@ MY_NAME="Larry the Lobster"
 From within the virtual environment, you are now ready to run the code:
 
 ```sh
-python workout.py
+python app/workout.py
 ```
 
 NOTE: the Sendgrid emails might first start showing up in spam, until you designate them as coming from a trusted source (i.e. "Looks Safe")

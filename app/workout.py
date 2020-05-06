@@ -10,6 +10,9 @@ from sendgrid.helpers.mail import (
     FileType, Disposition, ContentId)
 from fpdf import FPDF
 
+#variable for testing
+WORKOUT = "workout"
+
 #welcome message
 print("Welcome to Juicy Lifts: the Workout Customizer Tool!")
 print("Please enter some information about yourself below to get started!")
